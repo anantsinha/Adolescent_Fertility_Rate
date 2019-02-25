@@ -35,11 +35,6 @@ plotdata_bygroupyear <- gather(by_income_level, Year, FertilityRate, X1960:X2015
   select(Year, Country.Name, Country.Code, FertilityRate) %>%
   mutate(Year=as.numeric(str_replace(Year, "X", "")))
 
-#Plot by FertilityRate over Time (Year)
-ggplot(plotdata_bygroupyear, aes (x = Year, y = FertilityRate), group = Country.Code, color = Country.Code)
-+ geom_line()
-+ labs(title='Fertility Rate by Country-Income-Level over Time')
-
 ##Plot fertility rate High Income Countries
 filter(plotdata_bygroupyear, Country.Code == "HIC") %>%
   ggplot(aes(x = Year, y = FertilityRate)) +
